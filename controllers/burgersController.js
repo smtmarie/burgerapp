@@ -1,24 +1,37 @@
 var express = require("express");
+var router = express.Router();
+var burger = require("../models/burger.js");
 
-var PORT = process.env.PORT || 8000;
-var app = express();
+router.get("/", function(req, res) {
 
-app.use(express.static("public"));
+    res.redirect("/burgers");
 
-app.use(express.urlencoded({ extended: true}));
-app.use(express.json());
-
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-var routes = require("./controllers/burgersController.js");
-
-app.use(routes);
-
-app.listen(PORT, function() {
-
-    console.log("Listening on port:%s", PORT);
-    
 });
+
+router.get("/burgers", function(req, res) {
+
+    burger.all(function(burgerData) {
+
+        res.render("index", { burger_data: burgerData});
+    });
+});
+
+router.post("/burgers/create", function(req, res) {
+
+    burger.create(req.body.burger_name, function(result) {
+
+        console.log(result);
+        res.redirect("/");
+    });
+});
+
+router.put("/burger/:id", function(req, res) {
+
+    burger.update(req.params,id, function(result) {
+
+        console.log(result);
+        res.sendStatus(200);
+    });
+});
+
+module.exports = router;
