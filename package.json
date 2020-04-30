@@ -1,7 +1,7 @@
 {
   "name": "burgerapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "### Overview",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/smtmarie/burgerapp/issues"
   },
-  "homepage": "https://github.com/smtmarie/burgerapp#readme"
+  "homepage": "https://github.com/smtmarie/burgerapp#readme",
+  "dependencies": {
+    "inquirer": "^7.1.0",
+    "mysql": "^2.18.1"
+  }
 }
